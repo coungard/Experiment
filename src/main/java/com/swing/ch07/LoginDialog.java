@@ -2,6 +2,7 @@ package com.swing.ch07;
 
 import com.swing.tools.BoxLayoutUtils;
 import com.swing.tools.GUITools;
+import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,6 +16,7 @@ public class LoginDialog extends JDialog {
         add(createGUI());
         // задаем предпочтительный размер
         pack();
+        setLocationRelativeTo(null);
         // выводим окно на экран
         setVisible(true);
     }
@@ -22,7 +24,7 @@ public class LoginDialog extends JDialog {
     // этот метод будет возвращать панель с созданным расположением
     private JPanel createGUI() {
         // 1. Создается панель, которая будет содержать все остальные элементы и панели расположения
-        JPanel main = BoxLayoutUtils.createVerticalPanel();
+        JPanel main = new JPanel(new MigLayout("", "[][grow]"));
         // Чтобы интерфейс отвечал требованиям Java, необходимо отделить его содержимое от границ окна на 12 пикселов.
         // Для этого используем пустую рамку
         main.setBorder(BorderFactory.createEmptyBorder(12,12,12,12));
@@ -46,9 +48,9 @@ public class LoginDialog extends JDialog {
         JPanel grid = new JPanel( new GridLayout(1,2,5,0) );
         JButton ok = new JButton("OK");
         JButton cancel = new JButton("Отмена");
-        grid.add(ok);
         grid.add(cancel);
         flow.add(grid);
+        grid.add(ok);
         // 3. Проводятся необходимые действия по выравниванию компонентов, уточнению их размеров, приданию одинаковых размеров
         // а) согласованное выравнивание вложенных панелей
         BoxLayoutUtils.setGroupAlignmentX(Component.LEFT_ALIGNMENT, name, password, main, flow);
