@@ -1,6 +1,6 @@
 package com;
 
-public class NewTest extends Test {
+public class NewTest  {
 
     public static void main(String[] args) {
         print();
