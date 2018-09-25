@@ -2,11 +2,17 @@ package com;
 
 public class Test{
 
-    public static int testMethod(int count, int val) {
-        int res = 0;
-        for (int i = 0; i < count; i++) {
-            res += val;
+    public static void main(String[] args) {
+        for (int i = 1; i <= 10; i++) {
+            System.out.print(fibonacci(i) + " ");
         }
-        return res;
+    }
+
+    private static long fibonacci(int count) {
+        if (count == 1 || count == 2) {
+            return 1;
+        } else {
+            return fibonacci(count - 1) + fibonacci(count - 2);
+        }
     }
 }
