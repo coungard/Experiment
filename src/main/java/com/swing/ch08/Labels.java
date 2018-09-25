@@ -15,12 +15,12 @@ public class Labels extends JFrame implements SwingConstants {
         contents.add(l1);
         contents.add(name);
         // надпись со значком
-        JLabel l2 = new JLabel(new ImageIcon("src/main/resources/monkey.gif"));
+        JLabel l2 = new JLabel(new ImageIcon("src/main/resources/images/monkey.gif"));
         adjustLabel(l2);
         l2.setHorizontalAlignment(LEFT);
         contents.add(l2);
         // надпись с нестандартным выравниванием
-        JLabel l3 = new JLabel("Текст и значок", new ImageIcon("src/main/resources/bulb.gif"), RIGHT);
+        JLabel l3 = new JLabel("Текст и значок", new ImageIcon("src/main/resources/images/bulb.gif"), RIGHT);
         adjustLabel(l3);
         l3.setVerticalTextPosition(BOTTOM);
         l3.setHorizontalTextPosition(LEFT);

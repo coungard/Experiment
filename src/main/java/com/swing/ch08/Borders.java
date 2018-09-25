@@ -17,7 +17,7 @@ public class Borders extends JFrame {
         contents.add(createPanel(new SoftBevelBorder(BevelBorder.RAISED), "SoftBevelBorder"));
         contents.add(createPanel(new LineBorder(Color.BLACK, 5), "LineBorder"));
         contents.add(createPanel(new MatteBorder(
-                new ImageIcon("src/main/resources/matte.gif")), "MatteBorder"));
+                new ImageIcon("src/main/resources/images/matte.gif")), "MatteBorder"));
 
         add(contents);
         pack();
