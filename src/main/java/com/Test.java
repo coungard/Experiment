@@ -1,6 +1,6 @@
 package com;
 
-public class Fibonacci {
+public class Test {
 
     private static int fib(int p) {
         return (p==1 || p==2 ? 1 : fib(p-1) + fib(p-2));
