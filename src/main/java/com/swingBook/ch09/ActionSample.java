@@ -1,4 +1,4 @@
-package com.swing.ch09;
+package com.swingBook.ch09;
 
 // Использование архитектуры Action
 import javax.swing.*;

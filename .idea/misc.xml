@@ -8,6 +8,19 @@
         <option value="$USER_HOME$/Рабочий стол/git/miglayout/pom.xml" />
       </list>
     </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$USER_HOME$/Рабочий стол/git/miglayout/core/pom.xml" />
+        <option value="$USER_HOME$/Рабочий стол/git/miglayout/demo/pom.xml" />
+        <option value="$USER_HOME$/Рабочий стол/git/miglayout/examples/pom.xml" />
+        <option value="$USER_HOME$/Рабочий стол/git/miglayout/ideutil/pom.xml" />
+        <option value="$USER_HOME$/Рабочий стол/git/miglayout/javafx/pom.xml" />
+        <option value="$USER_HOME$/Рабочий стол/git/miglayout/nbm/pom.xml" />
+        <option value="$USER_HOME$/Рабочий стол/git/miglayout/pom.xml" />
+        <option value="$USER_HOME$/Рабочий стол/git/miglayout/swing/pom.xml" />
+        <option value="$USER_HOME$/Рабочий стол/git/miglayout/swt/pom.xml" />
+      </set>
+    </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />

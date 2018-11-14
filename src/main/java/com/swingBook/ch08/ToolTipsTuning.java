@@ -1,4 +1,4 @@
-package com.swing.ch08;
+package com.swingBook.ch08;
 
 import javax.swing.*;
 

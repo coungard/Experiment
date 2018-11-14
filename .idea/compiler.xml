@@ -6,16 +6,20 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="experiment" />
         <module name="Experiment" />
-        <module name="lib-miglayout-NB80" />
-        <module name="miglayout-core" />
-        <module name="miglayout-demo" />
-        <module name="miglayout-examples" />
-        <module name="miglayout-ideutil" />
-        <module name="miglayout-javafx" />
-        <module name="miglayout-swing" />
-        <module name="miglayout-swt" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="lib-miglayout-NB80" target="1.8" />
+      <module name="miglayout-core" target="1.8" />
+      <module name="miglayout-demo" target="1.8" />
+      <module name="miglayout-examples" target="1.8" />
+      <module name="miglayout-ideutil" target="1.8" />
+      <module name="miglayout-javafx" target="1.8" />
+      <module name="miglayout-parent" target="1.8" />
+      <module name="miglayout-swing" target="1.8" />
+      <module name="miglayout-swt" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

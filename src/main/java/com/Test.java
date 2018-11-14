@@ -1,28 +1,22 @@
 package com;
 
 public class Test {
+    public static void main(String... doYourBest) {
+        String text = "0.123.153";
+        String[] parts = text.split(".");
 
-    public static void main(String[] args) {
-        System.out.println("Integer to binary:");
-        for (int i = 0; i < 100; i++) {
-            String res = Integer.toBinaryString(i);
-            System.out.print(i + " = " + res + "  ");
-            if (i % 10 == 0 && i != 0)
-                System.out.println();
+        for (int i = 0; i < parts.length; i++) {
+            System.out.println(i);
         }
+    }
 
-        System.out.println("\n\nInteger to hex:");
-        for (int i = 0; i < 100; i++) {
-            String res = Integer.toHexString(i);
-            System.out.print(i + " = 0x" + res.toUpperCase() + "  ");
-            if (i % 10 == 0 && i != 0)
-                System.out.println();
+    private static byte[] fromASCIItoByteArray(String text) {
+        byte[] res = new byte[text.length()];
+        char[] ascii = text.toCharArray();
+
+        for (int i = 0; i < text.length(); i++) {
+            res[i] = (byte) (ascii[i] & 0xFF00 >> 8);
         }
-
-
-        for (int i = 0; i < 100; i++) {
-            int res = (i & 0x20);
-            System.out.println("(" + i + ")" + Integer.toBinaryString(i) + " & 0x20 (100000) = " + res);
-        }
+        return res;
     }
 }

@@ -1,4 +1,4 @@
-package com.swing.tools;
+package com.swingBook.tools;
 
 import javax.swing.*;
 import java.awt.*;
