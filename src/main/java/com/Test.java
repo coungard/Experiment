@@ -1,22 +1,28 @@
 package com;
 
-public class Test {
-    public static void main(String... doYourBest) {
-        String text = "0.123.153";
-        String[] parts = text.split(".");
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.List;
 
-        for (int i = 0; i < parts.length; i++) {
-            System.out.println(i);
+public class Test {
+    public static void main(String... doYourBest) throws IOException {
+        List<String> engPointTypes = Arrays.asList("street", "floor", "floor_in_the_booth", "mounted");
+
+        String[] pointTypesList = (String[]) engPointTypes.toArray();
+        for (String s : pointTypesList) {
+            System.out.println(s);
         }
+
     }
 
-    private static byte[] fromASCIItoByteArray(String text) {
-        byte[] res = new byte[text.length()];
-        char[] ascii = text.toCharArray();
-
-        for (int i = 0; i < text.length(); i++) {
-            res[i] = (byte) (ascii[i] & 0xFF00 >> 8);
+    public static Process runCmd(String[] args) {
+        try {
+            Runtime runtime = Runtime.getRuntime();
+            return runtime.exec(args);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
-        return res;
     }
 }

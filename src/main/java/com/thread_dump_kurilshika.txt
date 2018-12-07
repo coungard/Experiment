@@ -1,0 +1,207 @@
+2018-11-23 16:00:55
+Full thread dump Java HotSpot(TM) Client VM (24.80-b11 mixed mode):
+
+"Attach Listener" daemon prio=10 tid=0xa053c800 nid=0x5fd waiting on condition [0x00000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Image Animator 3" daemon prio=10 tid=0x9f5d8800 nid=0x582 waiting on condition [0x9edc8000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+	at java.lang.Thread.sleep(Native Method)
+	at sun.awt.image.GifFrame.dispose(GifImageDecoder.java:670)
+	at sun.awt.image.GifImageDecoder.readImage(GifImageDecoder.java:458)
+	at sun.awt.image.GifImageDecoder.produceImage(GifImageDecoder.java:212)
+	at sun.awt.image.InputStreamImageSource.doFetch(InputStreamImageSource.java:269)
+	at sun.awt.image.ImageFetcher.fetchloop(ImageFetcher.java:205)
+	at sun.awt.image.ImageFetcher.run(ImageFetcher.java:169)
+
+"TimerQueue" daemon prio=10 tid=0x9f55fc00 nid=0x78b4 waiting on condition [0x9ed77000]
+   java.lang.Thread.State: WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0xa90d0f20> (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+	at java.util.concurrent.locks.LockSupport.park(LockSupport.java:186)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2043)
+	at java.util.concurrent.DelayQueue.take(DelayQueue.java:209)
+	at javax.swing.TimerQueue.run(TimerQueue.java:171)
+	at java.lang.Thread.run(Thread.java:745)
+
+"DestroyJavaVM" prio=10 tid=0xb7108800 nid=0x7894 waiting on condition [0x00000000]
+   java.lang.Thread.State: RUNNABLE
+
+"MonitoringService" daemon prio=10 tid=0x9f541c00 nid=0x78b0 waiting on condition [0x9f7fe000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+	at java.lang.Thread.sleep(Native Method)
+	at com.sotas.terminal.client.service.MonitoringService.run(MonitoringService.java:209)
+
+"statusService" prio=10 tid=0x9f540000 nid=0x78ae waiting on condition [0x9f728000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+	at java.lang.Thread.sleep(Native Method)
+	at com.sotas.terminal.client.MainController$18.run(MainController.java:592)
+	at java.lang.Thread.run(Thread.java:745)
+
+"Thread-6" prio=10 tid=0xa050ac00 nid=0x78ad runnable [0x9f4fe000]
+   java.lang.Thread.State: RUNNABLE
+	at gnu.io.RXTXPort.eventLoop(Native Method)
+	at gnu.io.RXTXPort$MonitorThread.run(RXTXPort.java:1575)
+
+"CCNetService" prio=10 tid=0x9f503c00 nid=0x78ac waiting on condition [0x9f686000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+	at java.lang.Thread.sleep(Native Method)
+	at com.sotas.terminal.device.cashmachine.ccnet.CashMachineManager.run(CashMachineManager.java:93)
+
+"Timer-1" daemon prio=10 tid=0x9f93c000 nid=0x78a8 in Object.wait() [0x9f779000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	- waiting on <0xa6b20430> (a java.util.TaskQueue)
+	at java.util.TimerThread.mainLoop(Timer.java:552)
+	- locked <0xa6b20430> (a java.util.TaskQueue)
+	at java.util.TimerThread.run(Timer.java:505)
+
+"derby.rawStoreDaemon" daemon prio=10 tid=0x9fa2d400 nid=0x78a4 in Object.wait() [0x9fbb3000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	- waiting on <0xa6317470> (a org.apache.derby.impl.services.daemon.BasicDaemon)
+	at org.apache.derby.impl.services.daemon.BasicDaemon.rest(Unknown Source)
+	- locked <0xa6317470> (a org.apache.derby.impl.services.daemon.BasicDaemon)
+	at org.apache.derby.impl.services.daemon.BasicDaemon.run(Unknown Source)
+	at java.lang.Thread.run(Thread.java:745)
+
+"Timer-0" daemon prio=10 tid=0x9fed2800 nid=0x78a3 in Object.wait() [0x9fc04000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	- waiting on <0xa62a8b08> (a java.util.TaskQueue)
+	at java.lang.Object.wait(Object.java:503)
+	at java.util.TimerThread.mainLoop(Timer.java:526)
+	- locked <0xa62a8b08> (a java.util.TaskQueue)
+	at java.util.TimerThread.run(Timer.java:505)
+
+"AWT-EventQueue-0" prio=10 tid=0x9fe28800 nid=0x78a1 runnable [0x9fd41000]
+   java.lang.Thread.State: RUNNABLE
+	at sun.java2d.loops.MaskBlit.MaskBlit(Native Method)
+	at sun.java2d.loops.Blit$GeneralMaskBlit.Blit(Blit.java:204)
+	at sun.java2d.pipe.DrawImage.blitSurfaceData(DrawImage.java:955)
+	at sun.java2d.pipe.DrawImage.renderImageCopy(DrawImage.java:576)
+	at sun.java2d.pipe.DrawImage.copyImage(DrawImage.java:67)
+	at sun.java2d.pipe.DrawImage.copyImage(DrawImage.java:1010)
+	at sun.java2d.SunGraphics2D.drawImage(SunGraphics2D.java:3171)
+	at sun.awt.image.ImageRepresentation.drawToBufImage(ImageRepresentation.java:813)
+	at sun.java2d.pipe.DrawImage.copyImage(DrawImage.java:1017)
+	at sun.java2d.pipe.ValidatePipe.copyImage(ValidatePipe.java:186)
+	at sun.java2d.SunGraphics2D.drawImage(SunGraphics2D.java:3171)
+	at sun.java2d.SunGraphics2D.drawImage(SunGraphics2D.java:3149)
+	at javax.swing.ImageIcon.paintIcon(ImageIcon.java:413)
+	- locked <0xa7885430> (a javax.swing.ImageIcon)
+	at sun.swing.plaf.synth.SynthIcon.paintIcon(SynthIcon.java:67)
+	at javax.swing.plaf.synth.SynthGraphicsUtils.paintText(SynthGraphicsUtils.java:396)
+	at javax.swing.plaf.synth.SynthLabelUI.paint(SynthLabelUI.java:213)
+	at javax.swing.plaf.synth.SynthLabelUI.update(SynthLabelUI.java:177)
+	at javax.swing.JComponent.paintComponent(JComponent.java:779)
+	at javax.swing.JComponent.paint(JComponent.java:1055)
+	at javax.swing.JComponent.paintChildren(JComponent.java:888)
+	- locked <0xa615dc38> (a java.awt.Component$AWTTreeLock)
+	at javax.swing.JComponent.paint(JComponent.java:1064)
+	at javax.swing.JLayeredPane.paint(JLayeredPane.java:585)
+	at javax.swing.JComponent.paintChildren(JComponent.java:888)
+	- locked <0xa615dc38> (a java.awt.Component$AWTTreeLock)
+	at javax.swing.JComponent.paint(JComponent.java:1064)
+	at javax.swing.JComponent.paintToOffscreen(JComponent.java:5232)
+	at javax.swing.BufferStrategyPaintManager.paint(BufferStrategyPaintManager.java:295)
+	at javax.swing.RepaintManager.paint(RepaintManager.java:1249)
+	at javax.swing.JComponent._paintImmediately(JComponent.java:5180)
+	at javax.swing.JComponent.paintImmediately(JComponent.java:4991)
+	at javax.swing.RepaintManager$3.run(RepaintManager.java:808)
+	at javax.swing.RepaintManager$3.run(RepaintManager.java:796)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(ProtectionDomain.java:76)
+	at javax.swing.RepaintManager.paintDirtyRegions(RepaintManager.java:796)
+	at javax.swing.RepaintManager.paintDirtyRegions(RepaintManager.java:769)
+	at javax.swing.RepaintManager.prePaintDirtyRegions(RepaintManager.java:718)
+	at javax.swing.RepaintManager.access$1100(RepaintManager.java:62)
+	at javax.swing.RepaintManager$ProcessingRunnable.run(RepaintManager.java:1677)
+	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:312)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:745)
+	at java.awt.EventQueue.access$300(EventQueue.java:103)
+	at java.awt.EventQueue$3.run(EventQueue.java:706)
+	at java.awt.EventQueue$3.run(EventQueue.java:704)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(ProtectionDomain.java:76)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:715)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:242)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:161)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:150)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:146)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:138)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:91)
+
+"AWT-Shutdown" prio=10 tid=0x9fe27800 nid=0x78a0 in Object.wait() [0x9fd94000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	- waiting on <0xa61d3930> (a java.lang.Object)
+	at java.lang.Object.wait(Object.java:503)
+	at sun.awt.AWTAutoShutdown.run(AWTAutoShutdown.java:296)
+	- locked <0xa61d3930> (a java.lang.Object)
+	at java.lang.Thread.run(Thread.java:745)
+
+"AWT-XAWT" daemon prio=10 tid=0x9fe25000 nid=0x789f waiting on condition [0x9fde5000]
+   java.lang.Thread.State: WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0xa6171928> (a java.util.concurrent.locks.ReentrantLock$NonfairSync)
+	at java.util.concurrent.locks.LockSupport.park(LockSupport.java:186)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer.parkAndCheckInterrupt(AbstractQueuedSynchronizer.java:834)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer.acquireQueued(AbstractQueuedSynchronizer.java:867)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire(AbstractQueuedSynchronizer.java:1197)
+	at java.util.concurrent.locks.ReentrantLock$NonfairSync.lock(ReentrantLock.java:214)
+	at java.util.concurrent.locks.ReentrantLock.lock(ReentrantLock.java:290)
+	at sun.awt.SunToolkit.awtLock(SunToolkit.java:245)
+	at sun.awt.X11.XToolkit.waitForEvents(Native Method)
+	at sun.awt.X11.XToolkit.run(XToolkit.java:541)
+	at sun.awt.X11.XToolkit.run(XToolkit.java:505)
+	at java.lang.Thread.run(Thread.java:745)
+
+"Java2D Disposer" daemon prio=10 tid=0x9fe13800 nid=0x789e in Object.wait() [0x9ff58000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	- waiting on <0xa61d3b28> (a java.lang.ref.ReferenceQueue$Lock)
+	at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:135)
+	- locked <0xa61d3b28> (a java.lang.ref.ReferenceQueue$Lock)
+	at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:151)
+	at sun.java2d.Disposer.run(Disposer.java:145)
+	at java.lang.Thread.run(Thread.java:745)
+
+"Service Thread" daemon prio=10 tid=0xb7182800 nid=0x789c runnable [0x00000000]
+   java.lang.Thread.State: RUNNABLE
+
+"C1 CompilerThread0" daemon prio=10 tid=0xb7180800 nid=0x789b waiting on condition [0x00000000]
+   java.lang.Thread.State: RUNNABLE
+
+"JDWP Event Helper Thread" daemon prio=10 tid=0xb7179c00 nid=0x789a runnable [0x00000000]
+   java.lang.Thread.State: RUNNABLE
+
+"JDWP Transport Listener: dt_socket" daemon prio=10 tid=0xb7176c00 nid=0x7899 runnable [0x00000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Signal Dispatcher" daemon prio=10 tid=0xb716b000 nid=0x7898 runnable [0x00000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Finalizer" daemon prio=10 tid=0xb715dc00 nid=0x7897 in Object.wait() [0xa08a5000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	- waiting on <0xa61d3c20> (a java.lang.ref.ReferenceQueue$Lock)
+	at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:135)
+	- locked <0xa61d3c20> (a java.lang.ref.ReferenceQueue$Lock)
+	at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:151)
+	at java.lang.ref.Finalizer$FinalizerThread.run(Finalizer.java:209)
+
+"Reference Handler" daemon prio=10 tid=0xb715c400 nid=0x7896 in Object.wait() [0xa08f6000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	- waiting on <0xa61d3c48> (a java.lang.ref.Reference$Lock)
+	at java.lang.Object.wait(Object.java:503)
+	at java.lang.ref.Reference$ReferenceHandler.run(Reference.java:133)
+	- locked <0xa61d3c48> (a java.lang.ref.Reference$Lock)
+
+"VM Thread" prio=10 tid=0xb7159800 nid=0x7895 runnable 
+
+"VM Periodic Task Thread" prio=10 tid=0xb7185400 nid=0x789d waiting on condition 
+
+JNI global references: 6032
+

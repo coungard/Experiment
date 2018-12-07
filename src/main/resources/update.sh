@@ -1,0 +1,1 @@
+ls >/tmp/ls.txt
