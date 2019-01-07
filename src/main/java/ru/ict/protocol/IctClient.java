@@ -1,41 +1,30 @@
-package ru.ict;
+package ru.ict.protocol;
 
 import jssc.SerialPort;
 import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
 import jssc.SerialPortException;
-import ru.ict.types.ICTComandType;
-
-import javax.swing.*;
-import java.lang.reflect.InvocationTargetException;
+import ru.ict.util.Utils;
 
 /**
  * Created by artur, Date: 06.01.19, Time: 13:56
  */
-class IctClient extends Thread {
-    static byte[] receivedData;
+public class IctClient extends Thread {
+    public static byte[] receivedData;
     private static final int POLL_TIMEOUT = 1000;
     private SerialPort serialPort;
     private byte currentCommand;
 
-    IctClient(String port) {
+    IctClient(String port) throws SerialPortException {
         serialPort = new SerialPort(port);
-    }
 
-    void startAccept() throws SerialPortException, InterruptedException {
         serialPort.openPort();
         serialPort.setParams(SerialPort.BAUDRATE_9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
         serialPort.addEventListener(new PortReader(), SerialPort.MASK_RXCHAR);
-        startPolling();
     }
 
-    private void startPolling() throws SerialPortException, InterruptedException {
-        sendPacket(formPacket(new ICTCommand(ICTComandType.GetUCAVersion)));
-        sendPacket(formPacket(new ICTCommand(ICTComandType.RequestStatus)));
-    }
-
-    private void sendPacket(byte[] packet) throws SerialPortException, InterruptedException {
-        serialPort.writeBytes(packet);
+    private void sendPacket(ICTCommand command) throws SerialPortException, InterruptedException {
+        serialPort.writeBytes(formPacket(command));
         Thread.sleep(4000);
     }
 

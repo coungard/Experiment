@@ -1,4 +1,4 @@
-package ru.ict.types;
+package ru.ict.protocol;
 
 
 public enum ICTComandType {

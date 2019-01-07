@@ -1,6 +1,5 @@
-package ru.ict;
+package ru.ict.protocol;
 
-import ru.ict.types.ICTComandType;
 
 /**
  * Created by artur, Date: 06.01.19, Time: 14:02
