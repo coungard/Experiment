@@ -15,7 +15,7 @@ public class IctClient extends Thread {
     private SerialPort serialPort;
     private byte currentCommand;
 
-    IctClient(String port) throws SerialPortException {
+    public IctClient(String port) throws SerialPortException {
         serialPort = new SerialPort(port);
 
         serialPort.openPort();
@@ -51,10 +51,10 @@ public class IctClient extends Thread {
                     Thread.sleep(POLL_TIMEOUT);
                     receivedData = serialPort.readBytes();
 
-                    if (receivedData.length == 0) {
-                        throw new RuntimeException("Несоответствие контрольной суммы полученного сообщения. " +
-                                "Возможно устройство не подключено к COM-порту. Проверьте настройки подключения.");
-                    }
+//                    if (receivedData.length == 0) {
+//                        throw new RuntimeException("Несоответствие контрольной суммы полученного сообщения. " +
+//                                "Возможно устройство не подключено к COM-порту. Проверьте настройки подключения.");
+//                    }
                     Utils.createResponse(currentCommand);
                 } catch (SerialPortException | InterruptedException e) {
                     e.printStackTrace();

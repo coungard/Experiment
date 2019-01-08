@@ -22,6 +22,7 @@ public class ToggleCompositeButton extends JLayeredPane {
 
     private static List<ToggleCompositeButton> instances = new ArrayList<>();
     public static boolean touched = false;
+    public static String choosenPort;
 
     /**
      * @param imgOff путь к изображению для состояния toggle=true
@@ -86,7 +87,7 @@ public class ToggleCompositeButton extends JLayeredPane {
     /**
      * @return toggle
      */
-    public boolean isChecked() {
+    private boolean isChecked() {
         return toggle;
     }
 
@@ -108,6 +109,7 @@ public class ToggleCompositeButton extends JLayeredPane {
                         but.setChecked(false);
                 }
                 touched = true;
+                choosenPort = textLabelOn.getText();
             }
         } else {
             bgImgOff.setVisible(true);
@@ -116,6 +118,13 @@ public class ToggleCompositeButton extends JLayeredPane {
             if (textLabelOn != null) {
                 textLabelOff.setVisible(true);
                 textLabelOn.setVisible(false);
+                touched = false;
+                for (ToggleCompositeButton but : instances) {
+                    if (but.isChecked()) {
+                        touched = true;
+                        break;
+                    }
+                }
             }
         }
     }

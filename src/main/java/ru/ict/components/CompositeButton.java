@@ -52,7 +52,7 @@ public class CompositeButton extends JLayeredPane {
     }
 
     public void setTextLabel(JLabel textLabel) {
-        textLabel.setBounds(getBounds().x + 5, getBounds().y + 5, getBounds().width - 10, getBounds().height - 10);
+        textLabel.setBounds(5, 5, getBounds().width - 10, getBounds().height - 10);
 
         textLabel.setHorizontalAlignment(SwingConstants.CENTER);
         textLabel.setVerticalAlignment(SwingConstants.CENTER);

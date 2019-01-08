@@ -19,6 +19,7 @@ public class Controller {
     private static final ManagerPage managerPage = new ManagerPage();
 
     private static AbstractPage currentPage;
+    public static Map<String, String> properties = new HashMap<>();
 
     static void startGui(JPanel panel) {
         panel.add(startPage);

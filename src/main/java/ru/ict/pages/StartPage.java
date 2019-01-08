@@ -25,9 +25,4 @@ public class StartPage extends AbstractPage {
         });
         add(startButton);
     }
-
-//    @Override
-//    public void redraw() {
-//        backButton.setVisible(false);
-//    }
 }

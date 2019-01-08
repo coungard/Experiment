@@ -2,7 +2,6 @@ package ru.ict.pages;
 
 import jssc.SerialPortList;
 import ru.ict.Controller;
-import ru.ict.components.CompositeButton;
 import ru.ict.components.ToggleCompositeButton;
 
 import javax.swing.*;
@@ -14,7 +13,6 @@ import java.awt.event.MouseEvent;
  * Created by artur, Date: 07.01.19, Time: 12:58
  */
 public class PortsPage extends AbstractPage {
-    private boolean selected = false;
     private JPanel portsPanel = new JPanel();
 
     public PortsPage() {
@@ -26,26 +24,22 @@ public class PortsPage extends AbstractPage {
         title.setBounds(20, 20, getWidth(), 60);
         add(title);
 
-//        CompositeButton backButton = new CompositeButton("src/main/resources/images/backButton.png", "src/main/resources/images/backButtonPress.png");
-//        backButton.setLocation(50, 400);
-//        add(backButton);
-//        backButton.addMouseListener(new MouseInputAdapter() {
-//            @Override
-//            public void mouseClicked(MouseEvent e) {
-//                Controller.showPrevious();
-//            }
-//        });
-
-        CompositeButton nextButton = new CompositeButton("src/main/resources/images/nextButton.png", "src/main/resources/images/nextButtonPress.png");
-        nextButton.setLocation(600, 400);
-        add(nextButton);
         nextButton.addMouseListener(new MouseInputAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (!ToggleCompositeButton.touched)
                     JOptionPane.showMessageDialog(null, "Select port!", "message", JOptionPane.INFORMATION_MESSAGE);
-                else
+                else {
+                    Controller.properties.put("port", ToggleCompositeButton.choosenPort);
                     Controller.showNext();
+                }
+            }
+        });
+
+        backButton.addMouseListener(new MouseInputAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Controller.showPrevious();
             }
         });
 
@@ -74,5 +68,6 @@ public class PortsPage extends AbstractPage {
     @Override
     public void redraw() {
         backButton.setVisible(true);
+        nextButton.setVisible(true);
     }
 }
