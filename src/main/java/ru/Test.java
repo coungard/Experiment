@@ -1,32 +1,27 @@
 package ru;
 
+import java.util.Random;
+
 public class Test {
-    private static int tralala = 0;
 
-    public static void main(String[] args) throws InterruptedException {
-        doNothing();
-        doTralala();
+    public static void main(String[] args) {
+        boolean serverError = true;
+        boolean cashError = true;
+        boolean coinError = false;
 
-        System.out.println("end");
-    }
+        if (!serverError && !(cashError && coinError)) {
+            System.out.println("unblock");
+        } else {
+            if (serverError) {
 
-    private static void doNothing() {
-        for (int i = 0; i < 10; i++) {
-            tralala = 0;
+            }
         }
     }
 
-    private static void doTralala() throws InterruptedException {
-        Thread.sleep(1000);
-        tralala = 1;
-    }
+    private static boolean getBool() {
+        Random random = new Random();
+        int x = random.nextInt(10);
 
-    private static Process runCmd(String[] args) {
-        try {
-            Runtime runtime = Runtime.getRuntime();
-            return runtime.exec(args);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        return x % 2 == 0;
     }
 }

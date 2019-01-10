@@ -49,7 +49,7 @@ public class PortsPage extends AbstractPage {
     private void showPorts() {
         String[] ports = SerialPortList.getPortNames();
         portsPanel.setLayout(null);
-        portsPanel.setSize(300,500);
+        portsPanel.setSize(300, 500);
         for (int i = 0; i < ports.length; i++) {
             ToggleCompositeButton but = new ToggleCompositeButton("src/main/resources/images/selectButton.png", "src/main/resources/images/selectButtonPress.png");
             JLabel label = new JLabel(ports[i]);
@@ -60,7 +60,7 @@ public class PortsPage extends AbstractPage {
             but.setLocation(0, i * 90);
             portsPanel.add(but);
         }
-        portsPanel.setLocation(250,100);
+        portsPanel.setLocation(250, 100);
         portsPanel.setOpaque(false);
         add(portsPanel);
     }

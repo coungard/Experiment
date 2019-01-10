@@ -14,18 +14,19 @@ public class IctClient extends Thread {
     private static final int POLL_TIMEOUT = 1000;
     private SerialPort serialPort;
     private byte currentCommand;
+    private String response;
 
-    public IctClient(String port) throws SerialPortException {
+    public IctClient(String port) throws SerialPortException, InterruptedException {
         serialPort = new SerialPort(port);
-
         serialPort.openPort();
         serialPort.setParams(SerialPort.BAUDRATE_9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
         serialPort.addEventListener(new PortReader(), SerialPort.MASK_RXCHAR);
     }
 
-    private void sendPacket(ICTCommand command) throws SerialPortException, InterruptedException {
+    public String sendPacket(ICTCommand command) throws SerialPortException, InterruptedException {
         serialPort.writeBytes(formPacket(command));
-        Thread.sleep(4000);
+        sleep(500);
+        return response;
     }
 
     private byte[] formPacket(ICTCommand command) {
@@ -44,18 +45,19 @@ public class IctClient extends Thread {
         return message;
     }
 
+    public void close() throws SerialPortException {
+        if (serialPort != null)
+            serialPort.closePort();
+    }
+
     private class PortReader implements SerialPortEventListener {
         public void serialEvent(SerialPortEvent event) {
             if (event.isRXCHAR() && event.getEventValue() > 0) {
                 try {
-                    Thread.sleep(POLL_TIMEOUT);
+//                    Thread.sleep(POLL_TIMEOUT);
                     receivedData = serialPort.readBytes();
-
-//                    if (receivedData.length == 0) {
-//                        throw new RuntimeException("Несоответствие контрольной суммы полученного сообщения. " +
-//                                "Возможно устройство не подключено к COM-порту. Проверьте настройки подключения.");
-//                    }
-                    Utils.createResponse(currentCommand);
+                    Thread.sleep(400);
+                    response = Utils.createResponse(currentCommand);
                 } catch (SerialPortException | InterruptedException e) {
                     e.printStackTrace();
                 }

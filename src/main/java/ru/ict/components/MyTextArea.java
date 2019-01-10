@@ -15,6 +15,10 @@ public class MyTextArea extends JTextArea {
 
     public MyTextArea() {
         setOpaque(false); // без этого свойства картинка обесцвечивается
+        setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 18));
+        setLineWrap(true);
+        setWrapStyleWord(true);
+        setEditable(false);
         try{
             img = ImageIO.read(new File("src/main/resources/images/textArea.jpg"));
         } catch(IOException e) {

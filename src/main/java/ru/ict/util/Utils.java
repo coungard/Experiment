@@ -23,52 +23,41 @@ public class Utils {
         }
     }
 
-    public static void createCase(byte[] message) {
+    public static String createCase(byte[] message) {
         switch (message[2]) {
             case 0x01:
-                System.out.println("Команда включить UCA     " + byteArrayToHex(message));
-                break;
+                return "Команда включить UCA     " + byteArrayToHex(message);
             case 0x02:
-                System.out.println("Команда выключить UCA     " + byteArrayToHex(message));
-                break;
+                return "Команда выключить UCA     " + byteArrayToHex(message);
             case 0x03:
-                System.out.println("Команда на запрос версии UCA     " + byteArrayToHex(message));
-                break;
+                return "Команда на запрос версии UCA     " + byteArrayToHex(message);
             case 0x11:
-                System.out.println("Запрос статуса     " + byteArrayToHex(message));
-                break;
+                return "Запрос статуса     " + byteArrayToHex(message);
             default:
-                System.out.println(byteArrayToHex(message));
+                return byteArrayToHex(message);
         }
     }
 
-    public static void createResponse(byte command) {
+    public static String createResponse(byte command) {
         byte[] bytes = IctClient.receivedData;
         if (command == 0x03) {
-            System.out.println("Версия UCA: " + allocate(bytes) + "      " + byteArrayToHex(bytes));
+            return "Версия UCA: " + allocate(bytes) + "      " + byteArrayToHex(bytes);
         } else {
             switch (bytes[2]) {
                 case 0x11:
-                    System.out.println("Статус: Idling     " + byteArrayToHex(bytes));
-                    break;
+                    return "Status: Idling     " + byteArrayToHex(bytes);
                 case 0x12:
-                    System.out.println("Статус: Accepting     " + byteArrayToHex(bytes));
-                    break;
+                    return "Status: Accepting     " + byteArrayToHex(bytes);
                 case 0x14:
-                    System.out.println("Статус: Disable     " + byteArrayToHex(bytes));
-                    break;
+                    return "Status: Disable     " + byteArrayToHex(bytes);
                 case 0x16:
-                    System.out.println("Статус: Проблема с сенсором     " + byteArrayToHex(bytes));
-                    break;
+                    return "Status: Проблема с сенсором     " + byteArrayToHex(bytes);
                 case 0x50:
-                    System.out.println("Подтверждено (ACK)      " + byteArrayToHex(bytes));
-                    break;
+                    return "(ACK)      " + byteArrayToHex(bytes);
                 case 0x4B:
-                    System.out.println("REJECT RESPONSE (NAK)    " + byteArrayToHex(bytes));
-                    break;
+                    return "REJECT RESPONSE (NAK)    " + byteArrayToHex(bytes);
                 default:
-                    System.out.println("Статус не определен     " + byteArrayToHex(bytes));
-                    break;
+                    return "Status undefined     " + byteArrayToHex(bytes);
             }
         }
     }
@@ -89,7 +78,7 @@ public class Utils {
         sb.append("[");
         for (byte b : a)
             sb.append(String.format("%02xh ", b).toUpperCase());
-        sb.append("]");
+        sb.deleteCharAt(sb.length() - 1).append("]");
         return sb.toString();
     }
 }

@@ -4,6 +4,8 @@ import jssc.SerialPortException;
 import ru.ict.Controller;
 import ru.ict.components.CompositeButton;
 import ru.ict.components.MyTextArea;
+import ru.ict.protocol.ICTComandType;
+import ru.ict.protocol.ICTCommand;
 import ru.ict.protocol.IctClient;
 
 import javax.swing.*;
@@ -20,14 +22,15 @@ public class ManagerPage extends AbstractPage {
     private CompositeButton disableButton = new CompositeButton(images[0], images[1]);
     private CompositeButton statusButton = new CompositeButton(images[0], images[1]);
     private CompositeButton versionButton = new CompositeButton(images[0], images[1]);
-    private JLabel port;
+    private JLabel portLabel;
     private JTextArea info = new MyTextArea();
     private IctClient ictClient;
+    private String port;
 
     public ManagerPage() {
         setVisible(false);
         setLayout(null);
-        setSize(800,600);
+        setSize(800, 600);
 
         backButton.addMouseListener(new MouseInputAdapter() {
             @Override
@@ -41,25 +44,20 @@ public class ManagerPage extends AbstractPage {
         putUCAbutton(statusButton, 400, "status");
         putUCAbutton(versionButton, 560, "version");
 
-        port = new JLabel();
-        port.setForeground(Color.BLACK);
-        port.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 28));
-        port.setHorizontalAlignment(SwingConstants.CENTER);
-        port.setBounds(0,0,getWidth(),50);
-        add(port);
+        portLabel = new JLabel();
+        portLabel.setForeground(Color.BLACK);
+        portLabel.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 28));
+        portLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        portLabel.setBounds(0, 0, getWidth(), 50);
+        add(portLabel);
 
-        info.setBounds(10,120,getWidth() - 20,300);
-        info.setBackground(new Color(152, 214, 211, 157));
-        info.setFont(new Font(Font.DIALOG, Font.BOLD, 18));
-        info.setForeground(Color.WHITE);
-        info.setLineWrap(true);
-        info.setWrapStyleWord(true);
+        info.setBounds(10, 120, getWidth() - 20, 300);
         add(info);
 
         versionButton.addMouseListener(new MouseInputAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                info.append("command sent for version request, wait...\n");
+                info.append("\ncommand sent for version reques, wait...");
             }
         });
     }
@@ -75,14 +73,34 @@ public class ManagerPage extends AbstractPage {
 
     @Override
     public void redraw() {
-        backButton.setVisible(true);
-        port.setText("port: " + Controller.properties.get("port"));
-        info.setText("");
+        port = Controller.properties.get("port");
         try {
-            ictClient = new IctClient(port.getText());
-        } catch (SerialPortException e) {
+            if (ictClient != null)
+                ictClient.close();
+
+            backButton.setVisible(true);
+            portLabel.setText("portLabel: " + port);
+            ictClient = new IctClient(port);
+
+            init();
+        } catch (SerialPortException | InterruptedException e) {
             e.printStackTrace();
-            info.append(e.getMessage() + ". Please check your port!");
+        }
+    }
+
+    private void init() {
+        try {
+            String response = ictClient.sendPacket(new ICTCommand(ICTComandType.RequestStatus));
+            if (response != null) {
+                info.setForeground(new Color(52, 7, 6));
+                info.setText("Coin port " + port + " opened succesfully! " + response);
+            } else {
+                info.setForeground(Color.RED);
+                info.setText("Port not responding!");
+            }
+
+        } catch (SerialPortException | InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }
