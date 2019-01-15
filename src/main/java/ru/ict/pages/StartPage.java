@@ -3,6 +3,7 @@ package ru.ict.pages;
 import ru.ict.Controller;
 import ru.ict.components.CompositeButton;
 
+import javax.swing.event.MouseInputAdapter;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -15,7 +16,7 @@ public class StartPage extends AbstractPage {
         setVisible(false);
         setSize(800, 600);
 
-        CompositeButton startButton = new CompositeButton("src/main/resources/images/startButton.png", "src/main/resources/images/startButtonPress.png");
+        CompositeButton startButton = new CompositeButton("src/main/resources/ict/startButton.png", "src/main/resources/ict/startButtonPress.png");
         startButton.setLocation(200, 150);
         startButton.addMouseListener(new MouseAdapter() {
             @Override
@@ -24,5 +25,15 @@ public class StartPage extends AbstractPage {
             }
         });
         add(startButton);
+
+        CompositeButton exitButton = new CompositeButton("src/main/resources/ict/exitButton.png","src/main/resources/ict/exitButtonPress.png");
+        exitButton.setLocation(5,500);
+        exitButton.addMouseListener(new MouseInputAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                System.exit(0);
+            }
+        });
+        add(exitButton);
     }
 }

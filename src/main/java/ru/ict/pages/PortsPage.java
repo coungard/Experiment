@@ -51,7 +51,7 @@ public class PortsPage extends AbstractPage {
         portsPanel.setLayout(null);
         portsPanel.setSize(300, 500);
         for (int i = 0; i < ports.length; i++) {
-            ToggleCompositeButton but = new ToggleCompositeButton("src/main/resources/images/selectButton.png", "src/main/resources/images/selectButtonPress.png");
+            ToggleCompositeButton but = new ToggleCompositeButton("src/main/resources/ict/selectButton.png", "src/main/resources/ict/selectButtonPress.png");
             JLabel label = new JLabel(ports[i]);
             but.setTextLabelOff(label);
             JLabel label2 = new JLabel(ports[i]);

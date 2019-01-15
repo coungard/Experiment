@@ -3,9 +3,9 @@
   <component name="CompilerConfiguration">
     <excludeFromCompile>
       <directory url="file://$PROJECT_DIR$/src/main/java/ru/itext" includeSubdirectories="true" />
-      <directory url="file://$PROJECT_DIR$/src/main/java/ru/other" includeSubdirectories="true" />
-      <directory url="file://$PROJECT_DIR$/src/main/java/ru/skipy" includeSubdirectories="true" />
-      <directory url="file://$PROJECT_DIR$/src/main/java/ru/swingBook" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/src/main/java/ru/other" includeSubdirectories="false" />
+      <directory url="file://$PROJECT_DIR$/src/main/java/ru/skipy" includeSubdirectories="false" />
+      <directory url="file://$PROJECT_DIR$/src/main/java/ru/swingBook" includeSubdirectories="false" />
       <directory url="file://$PROJECT_DIR$/src/main/java/ru/TerminalConfig" includeSubdirectories="true" />
       <directory url="file://$PROJECT_DIR$/src/main/java/ru/threads" includeSubdirectories="true" />
     </excludeFromCompile>
@@ -18,16 +18,5 @@
         <module name="Experiment" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="lib-miglayout-NB80" target="1.8" />
-      <module name="miglayout-core" target="1.8" />
-      <module name="miglayout-demo" target="1.8" />
-      <module name="miglayout-examples" target="1.8" />
-      <module name="miglayout-ideutil" target="1.8" />
-      <module name="miglayout-javafx" target="1.8" />
-      <module name="miglayout-parent" target="1.8" />
-      <module name="miglayout-swing" target="1.8" />
-      <module name="miglayout-swt" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

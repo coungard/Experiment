@@ -8,8 +8,8 @@ import java.lang.reflect.InvocationTargetException;
  * Created by artur, Date: 06.01.19, Time: 14:28
  */
 public class CoinManager extends JFrame {
-    private static final String BG_PATH = "src/main/resources/images/bg.png";
-    static JPanel mainPanel;
+    private static final String BG_PATH = "src/main/resources/ict/bg.png";
+    private static JPanel mainPanel;
 
     public static void main(String[] args) throws InvocationTargetException, InterruptedException {
         SwingUtilities.invokeAndWait(new Runnable() {

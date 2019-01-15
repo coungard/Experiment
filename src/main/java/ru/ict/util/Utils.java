@@ -26,13 +26,13 @@ public class Utils {
     public static String createCase(byte[] message) {
         switch (message[2]) {
             case 0x01:
-                return "Команда включить UCA     " + byteArrayToHex(message);
+                return "Command to turn ON UCA     " + byteArrayToHex(message);
             case 0x02:
-                return "Команда выключить UCA     " + byteArrayToHex(message);
+                return "Command to turn OFF UCA     " + byteArrayToHex(message);
             case 0x03:
-                return "Команда на запрос версии UCA     " + byteArrayToHex(message);
+                return "Request for version UCA     " + byteArrayToHex(message);
             case 0x11:
-                return "Запрос статуса     " + byteArrayToHex(message);
+                return "Request for status     " + byteArrayToHex(message);
             default:
                 return byteArrayToHex(message);
         }
@@ -51,13 +51,13 @@ public class Utils {
                 case 0x14:
                     return "Status: Disable     " + byteArrayToHex(bytes);
                 case 0x16:
-                    return "Status: Проблема с сенсором     " + byteArrayToHex(bytes);
+                    return "Status: SENSOR PROBLEMS!     " + byteArrayToHex(bytes);
                 case 0x50:
                     return "(ACK)      " + byteArrayToHex(bytes);
                 case 0x4B:
-                    return "REJECT RESPONSE (NAK)    " + byteArrayToHex(bytes);
+                    return "REJECT RESPONSE (NAK)!    " + byteArrayToHex(bytes);
                 default:
-                    return "Status undefined     " + byteArrayToHex(bytes);
+                    return "Status undefined!     " + byteArrayToHex(bytes);
             }
         }
     }

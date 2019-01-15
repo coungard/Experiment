@@ -3,13 +3,17 @@ package ru.ict.pages;
 import jssc.SerialPortException;
 import ru.ict.Controller;
 import ru.ict.components.CompositeButton;
-import ru.ict.components.MyTextArea;
+import ru.ict.components.InfoPanel;
 import ru.ict.protocol.ICTComandType;
 import ru.ict.protocol.ICTCommand;
 import ru.ict.protocol.IctClient;
 
 import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyleContext;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
@@ -17,13 +21,8 @@ import java.awt.event.MouseEvent;
  * Created by artur, Date: 07.01.19, Time: 15:37
  */
 public class ManagerPage extends AbstractPage {
-    private final String[] images = new String[]{"src/main/resources/images/commandButton.png", "src/main/resources/images/commandButtonPress.png"};
-    private CompositeButton unableButton = new CompositeButton(images[0], images[1]);
-    private CompositeButton disableButton = new CompositeButton(images[0], images[1]);
-    private CompositeButton statusButton = new CompositeButton(images[0], images[1]);
-    private CompositeButton versionButton = new CompositeButton(images[0], images[1]);
     private JLabel portLabel;
-    private JTextArea info = new MyTextArea();
+    private InfoPanel infoPanel = new InfoPanel();
     private IctClient ictClient;
     private String port;
 
@@ -39,6 +38,11 @@ public class ManagerPage extends AbstractPage {
             }
         });
 
+        String[] images = new String[]{"src/main/resources/ict/commandButton.png", "src/main/resources/images/commandButtonPress.png"};
+        CompositeButton unableButton = new CompositeButton(images[0], images[1]);
+        CompositeButton disableButton = new CompositeButton(images[0], images[1]);
+        CompositeButton statusButton = new CompositeButton(images[0], images[1]);
+        CompositeButton versionButton = new CompositeButton(images[0], images[1]);
         putUCAbutton(unableButton, 80, "unable coin");
         putUCAbutton(disableButton, 240, "disable coin");
         putUCAbutton(statusButton, 400, "status");
@@ -51,13 +55,30 @@ public class ManagerPage extends AbstractPage {
         portLabel.setBounds(0, 0, getWidth(), 50);
         add(portLabel);
 
-        info.setBounds(10, 120, getWidth() - 20, 300);
-        add(info);
+        add(infoPanel);
+        JScrollPane scrollPane = new JScrollPane(infoPanel);
+        scrollPane.setBounds(10, 120, getWidth() - 20, 300);
+        add(scrollPane);
 
         versionButton.addMouseListener(new MouseInputAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                info.append("\ncommand sent for version reques, wait...");
+                infoPanel.append("\nBeta Version!", Color.BLACK);
+            }
+        });
+
+        statusButton.addMouseListener(new MouseInputAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    String request = ictClient.sendPacket(new ICTCommand(ICTComandType.RequestStatus));
+                    infoPanel.append("\n" + request, new Color(95, 72, 105));
+                    String response = ictClient.getResponse();
+                    infoPanel.append("\n" + response, response.contains("!") ? Color.RED : Color.BLACK);
+
+                } catch (SerialPortException | InterruptedException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
     }
@@ -81,6 +102,7 @@ public class ManagerPage extends AbstractPage {
             backButton.setVisible(true);
             portLabel.setText("portLabel: " + port);
             ictClient = new IctClient(port);
+            infoPanel.setText("");
 
             init();
         } catch (SerialPortException | InterruptedException e) {
@@ -92,11 +114,9 @@ public class ManagerPage extends AbstractPage {
         try {
             String response = ictClient.sendPacket(new ICTCommand(ICTComandType.RequestStatus));
             if (response != null) {
-                info.setForeground(new Color(52, 7, 6));
-                info.setText("Coin port " + port + " opened succesfully! " + response);
+                infoPanel.append("COIN MACHINE FOUND SUCCESFULLY! PORT: " + port, new Color(16, 173, 129));
             } else {
-                info.setForeground(Color.RED);
-                info.setText("Port not responding!");
+                infoPanel.append("COIN MACHINE NOT FOUND! PORT: " + port, Color.RED);
             }
 
         } catch (SerialPortException | InterruptedException e) {

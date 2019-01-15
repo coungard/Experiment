@@ -10,8 +10,8 @@ import javax.swing.*;
 public abstract class AbstractPage extends JLayeredPane {
     private AbstractPage previousPage;
     private AbstractPage nextPage;
-    CompositeButton backButton = new CompositeButton("src/main/resources/images/backButton.png", "src/main/resources/images/backButtonPress.png");
-    CompositeButton nextButton = new CompositeButton("src/main/resources/images/nextButton.png", "src/main/resources/images/nextButtonPress.png");
+    CompositeButton backButton = new CompositeButton("src/main/resources/ict/backButton.png", "src/main/resources/ict/backButtonPress.png");
+    CompositeButton nextButton = new CompositeButton("src/main/resources/ict/nextButton.png", "src/main/resources/ict/nextButtonPress.png");
 
     AbstractPage() {
         backButton.setLocation(25, 450);

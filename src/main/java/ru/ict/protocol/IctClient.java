@@ -11,10 +11,11 @@ import ru.ict.util.Utils;
  */
 public class IctClient extends Thread {
     public static byte[] receivedData;
-    private static final int POLL_TIMEOUT = 1000;
+    private static final int POLL_TIMEOUT = 400;
     private SerialPort serialPort;
     private byte currentCommand;
     private String response;
+    private String outputCommand;
 
     public IctClient(String port) throws SerialPortException, InterruptedException {
         serialPort = new SerialPort(port);
@@ -25,8 +26,8 @@ public class IctClient extends Thread {
 
     public String sendPacket(ICTCommand command) throws SerialPortException, InterruptedException {
         serialPort.writeBytes(formPacket(command));
-        sleep(500);
-        return response;
+        sleep(POLL_TIMEOUT);
+        return outputCommand;
     }
 
     private byte[] formPacket(ICTCommand command) {
@@ -40,7 +41,7 @@ public class IctClient extends Thread {
         message[3] = 0x03;
         message[4] = Utils.getChecksum(command.getCommandType().getCode());
 
-        Utils.createCase(message);
+        outputCommand = Utils.createCase(message);
 
         return message;
     }
@@ -54,14 +55,17 @@ public class IctClient extends Thread {
         public void serialEvent(SerialPortEvent event) {
             if (event.isRXCHAR() && event.getEventValue() > 0) {
                 try {
-//                    Thread.sleep(POLL_TIMEOUT);
                     receivedData = serialPort.readBytes();
-                    Thread.sleep(400);
+                    Thread.sleep(POLL_TIMEOUT);
                     response = Utils.createResponse(currentCommand);
                 } catch (SerialPortException | InterruptedException e) {
                     e.printStackTrace();
                 }
             }
         }
+    }
+
+    public String getResponse() {
+        return response;
     }
 }
