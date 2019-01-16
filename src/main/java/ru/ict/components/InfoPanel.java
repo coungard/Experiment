@@ -33,14 +33,16 @@ public class InfoPanel extends JTextPane {
             System.out.println(e.toString());
         }
         styleContext = StyleContext.getDefaultStyleContext();
+        setContentType("text/html");
     }
 
-    public void append(String message, Color color) {
+    public void appendRow(String message, Color color, boolean output) {
         setEditable(true);
+        insertIcon(new ImageIcon(String.format("src/main/resources/ict/%s.png", output ? "output" : "input")));
         AttributeSet aset = styleContext.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, color);
         aset = styleContext.addAttribute(aset, StyleConstants.FontFamily, "Lucida Console");
         aset = styleContext.addAttribute(aset, StyleConstants.Alignment, StyleConstants.ALIGN_JUSTIFIED);
-        aset = styleContext.addAttribute(aset, StyleConstants.FontSize, 20);
+        aset = styleContext.addAttribute(aset, StyleConstants.FontSize, 18);
 
         int len = getDocument().getLength();
         setCaretPosition(len);
@@ -53,12 +55,18 @@ public class InfoPanel extends JTextPane {
     // TODO КАК ПРИЖАТЬ ТЕКСТ С ДАТОЙ К ПРАВОМУ КРАЮ ???
     private void appendDate() {
         Date date = new Date();
-        AttributeSet aset = styleContext.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, Color.GRAY);
-        aset = styleContext.addAttribute(aset, StyleConstants.FontSize, 16);
+        AttributeSet aset = styleContext.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, new Color(56, 116, 111, 180));
+        aset = styleContext.addAttribute(aset, StyleConstants.FontSize, 15);
+
+//        StyledDocument doc = this.getStyledDocument();
+//        SimpleAttributeSet right = new SimpleAttributeSet();
+//        StyleConstants.setAlignment(right, StyleConstants.ALIGN_RIGHT);
+//        doc.setParagraphAttributes(len - dateFormat.format(date).length(), dateFormat.format(date).length(), right, false);
+
         int len = getDocument().getLength();
         setCaretPosition(len);
         setCharacterAttributes(aset, false);
-        replaceSelection("\t\t" + dateFormat.format(date));
+        replaceSelection(dateFormat.format(date) + "\n");
     }
 
     @Override

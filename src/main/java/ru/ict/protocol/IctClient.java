@@ -17,13 +17,14 @@ public class IctClient extends Thread {
     private String response;
     private String outputCommand;
 
-    public IctClient(String port) throws SerialPortException, InterruptedException {
+    public IctClient(String port) throws SerialPortException {
         serialPort = new SerialPort(port);
         serialPort.openPort();
         serialPort.setParams(SerialPort.BAUDRATE_9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
         serialPort.addEventListener(new PortReader(), SerialPort.MASK_RXCHAR);
     }
 
+    synchronized
     public String sendPacket(ICTCommand command) throws SerialPortException, InterruptedException {
         serialPort.writeBytes(formPacket(command));
         sleep(POLL_TIMEOUT);
