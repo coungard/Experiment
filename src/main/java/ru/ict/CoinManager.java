@@ -9,7 +9,6 @@ import java.lang.reflect.InvocationTargetException;
  */
 public class CoinManager extends JFrame {
     private static final String BG_PATH = "src/main/resources/ict/bg.png";
-    private static JPanel mainPanel;
 
     public static void main(String[] args) throws InvocationTargetException, InterruptedException {
         SwingUtilities.invokeAndWait(new Runnable() {
@@ -21,7 +20,7 @@ public class CoinManager extends JFrame {
     }
 
     private CoinManager() {
-        super("CoinManager");
+        super("CoinManager (ICT)");
         setSize(800,600);
         setResizable(false);
         setLocationRelativeTo(null);
@@ -32,7 +31,7 @@ public class CoinManager extends JFrame {
     }
 
     private void init() {
-        mainPanel = new JPanel();
+        JPanel mainPanel = new JPanel();
         mainPanel.setLayout(null);
 
         Controller.startGui(mainPanel);
