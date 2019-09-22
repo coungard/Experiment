@@ -31,7 +31,8 @@ public class Printer {
 
     private static void print(List<String> rows) {
         try {
-            printer = new PrintWriter(new OutputStreamWriter(new FileOutputStream("/dev/usb/lp0"), StandardCharsets.UTF_8));
+//            printer = new PrintWriter(new OutputStreamWriter(new FileOutputStream("/dev/usb/lp0"), StandardCharsets.UTF_8));
+            printer = new PrintWriter(new OutputStreamWriter(new FileOutputStream("COM1"), StandardCharsets.UTF_8));
             printer.write(0x1B); // ESC
             printer.write(0x40); // @ - initialize printer
 //            printer.write(new char[]{0x1B, 0x4D, 0x01}); // select character font
@@ -44,9 +45,6 @@ public class Printer {
             }
             lineBreak(3);
 
-            System.out.println("before print raster");
-            printRasterImage();
-            System.out.println("after print raster");
             lineFeed();
 
             lineBreak(3);
@@ -65,66 +63,6 @@ public class Printer {
 
     private static void lineFeed() {
         printer.write(0x0A);
-    }
-
-    private static void printRasterImage() {
-        try {
-            printer.write(new char[]{0x1D, 0X76, 0X30, 0x00, 0x14, 0x03, 0x14, 0x03});
-            byte[] date = getBytesFromImage("/home/artur/qrCode4.bmp");
-
-            for (int i = 0; i < date.length; i++) {
-                printer.write(i);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static byte[] getBytesFromImage(String path) throws IOException {
-        File file = new File(path);
-
-        FileInputStream fis = new FileInputStream(file);
-        //create FileInputStream which obtains input bytes from a file in a file system
-        //FileInputStream is meant for reading streams of raw bytes such as image data. For reading streams of characters, consider using FileReader.
-
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        byte[] buf = new byte[1024];
-        try {
-            for (int readNum; (readNum = fis.read(buf)) != -1; ) {
-                //Writes to this byte array output stream
-                bos.write(buf, 0, readNum);
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            fis.close();
-        }
-        System.out.println("array len = " + bos.toByteArray().length + " " + Arrays.toString(bos.toByteArray()));
-        return bos.toByteArray();
-    }
-
-    private static void selectBitImageMode() {
-        printer.write(new char[]{0x1B, 0x21, 0x01, 0x14, 0x01, 0x10, 0x10, 0x10, 0x10});
-    }
-
-    private static void saveLogo(String path) {
-        char[] binary = path.toCharArray();
-        byte[] data = new byte[binary.length * 2];
-        for (int i = 0; i < data.length; i++) {
-            byte b = (byte) binary[i / 2];
-            if (i % 2 == 0)
-                data[i] = (byte) ((b & 0xFF00) >> 8); // MSB first
-            else
-                data[i] = (byte) (b & 0xFF);
-        }
-        printer.write(new char[]{0x1B, 0xFF, 0x01});
-        for (byte b : data) {
-            printer.write(b);
-        }
-    }
-
-    private static void printLogo() {
-        printer.write(new char[]{0x1B, 0xFA, 0x01, 0x00, 0x64, 0x00, 0xC7});
     }
 
     private static void formFeed() {
