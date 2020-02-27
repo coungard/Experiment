@@ -13,6 +13,6 @@ public class Implement {
         QR qr = new QR("/dev/usb/lp0");
         qr.generateQrCodeImage("this is paygo qrcode payment!");
         Thread.sleep(1000);
-        qr.printImage(ImageIO.read(new File("/home/artur/testQR.bmp")));
+        qr.printImage(ImageIO.read(new File("testQR.bmp")));
     }
 }
