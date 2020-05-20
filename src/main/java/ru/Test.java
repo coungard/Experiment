@@ -1,34 +1,29 @@
 package ru;
 
-import java.util.Formatter;
-
 public class Test {
-    private static String message = "|U 9903600181                  |\n" +
-            "|                              |\n" +
-            "|                              |\n" +
-            "|                              |\n" +
-            "|          ИHКАССАЦИЯ          |\n" +
-            "|            УСПЕШHА           | ";
 
     public static void main(String[] args) {
+        String s1 = "12";
+        String s2 = "text";
+        String s3 = "alo";
+        String s4 = "22222";
 
-        double kot = 2.00;
-        String res = new Formatter().format("%.2f", kot).toString().replace(",", ".");
-        System.out.println(res);
 
-//        if (message.contains("ИНКАССАЦИЯ") && message.contains("УСПЕШНА")) {
-//            System.out.println("found");
-//        }
-//        if (message.contains("ИНКАССАЦИЯ")) {
-//            System.out.println("found encash");
-//        } else {
-//            System.out.println("no found encash");
-//        }
-//        if (message.contains("УСПЕШНА")) {
-//            System.out.println("found success");
-//        } else {
-//            System.out.println("no found success");
-//        }
+//        isDigit(s1);
+//        isDigit(s2);
+//        isDigit(s3);
+//        isDigit(s4);
+    }
+
+    private static boolean isDigit(String text) {
+        try {
+            Integer.parseInt(text);
+        } catch (NumberFormatException ex) {
+            return false;
+        }
+        return true;
     }
 }
 
+
+// String 12 - is digit; String text = is not digit; ...

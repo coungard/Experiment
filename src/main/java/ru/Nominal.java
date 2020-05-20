@@ -22,6 +22,7 @@ public class Nominal {
 
     public byte[] getValue() {
         byte[] array = new byte[7];
+
         String hex = new Formatter().format("%08X", billTable.getTable().get(note)).toString();
 
         String nominal = inverse(hex);
