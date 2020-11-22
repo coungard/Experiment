@@ -1,0 +1,16 @@
+[
+  {
+    "org": {
+      "name": "Casino",
+      "address": "RRS-13",
+      "inn": "12345"
+    }
+  },
+  {
+    "org": {
+      "name": "Brian",
+      "address": "Schultz-23",
+      "inn": "777666"
+    }
+  }
+]
